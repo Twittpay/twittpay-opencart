@@ -1,0 +1,7 @@
+{
+    "name": "TwittPay Payment Gateway",
+    "version": "3.3.1",
+    "author": "TwittPay",
+    "link": "https://twittpay.com",
+    "description": "TwittPay payment gateway for OpenCart 4.x: bKash, Nagad, Rocket and Upay with automatic verification."
+}

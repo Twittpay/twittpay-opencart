@@ -1,0 +1,31 @@
+<div class="buttons">
+  <div class="float-end">
+    <button type="button" id="button-confirm" class="btn btn-primary">{{ button_confirm }}</button>
+  </div>
+</div>
+<script type="text/javascript">
+$('#button-confirm').on('click', function () {
+    var button = $(this);
+    $.ajax({
+        url: 'index.php?route=extension/twittpay/payment/twittpay.confirm&language={{ language }}',
+        dataType: 'json',
+        beforeSend: function () {
+            button.prop('disabled', true).html('<i class="fa fa-spinner fa-spin"></i> {{ text_loading }}');
+        },
+        complete: function () {
+            button.prop('disabled', false).html('{{ button_confirm }}');
+        },
+        success: function (json) {
+            if (json['error']) {
+                alert(json['error']);
+            }
+            if (json['success'] && json['payment_url']) {
+                window.location = json['payment_url'];
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText);
+        }
+    });
+});
+</script>
